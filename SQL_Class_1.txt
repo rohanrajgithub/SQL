@@ -1,0 +1,8 @@
+---  Crate DATABASE Command
+
+CREATE DATABASE BigdataBootCamp;
+CREATE DATABASE Test;
+
+
+--- Get the List of existing Databases
+SHOW DATABASES;
