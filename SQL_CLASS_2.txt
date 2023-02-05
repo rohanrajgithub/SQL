@@ -1,0 +1,38 @@
+CREATE DATABASE CLASS2_DB;
+
+---- used db first because i first need to go inside the data base first
+
+USE CLASS2_DB;
+
+CREATE TABLE IF NOT EXISTS EMPLOYEE
+(
+    ID int,
+    name VARCHAR(50),
+    address VARCHAR(50),
+    city VARCHAR(50)
+
+);
+
+insert into EMPLOYEE Values(1,'SHASHANK','RJPM','LUCKNOW');
+
+SELECT* from EMPLOYEE;
+
+--- add new column as date of birth in the table
+
+alter table EMPLOYEE add DOB DATE;
+SELECT* from EMPLOYEE;
+
+
+---  Modify existing column in a table  or Change datatype of name column or increase length of name column
+
+alter table EMPLOYEE modify column name varchar(100);
+
+---  delete existing Column from given TABLE or remove city column from employee table
+
+alter table EMPLOYEE drop column CITY;
+
+SELECT*from EMPLOYEE;
+
+--- rename the column name to full_name
+
+alter table EMPLOYEE rename column name to full_name;
