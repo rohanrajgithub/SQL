@@ -6,3 +6,19 @@ CREATE DATABASE Test;
 
 --- Get the List of existing Databases
 SHOW DATABASES;
+
+--- Command to drop a DATABASE
+--- Delete the DATABASE
+DROP DATABASE Test;
+
+--- Go inside the particular DATABASE
+use BigdataBootCamp;
+
+
+--- Command to CREATE a table
+
+CREATE Table if not exists employee
+(
+    id int,
+    name VARCHAR(50)
+);
