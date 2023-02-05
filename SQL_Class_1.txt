@@ -22,3 +22,9 @@ CREATE Table if not exists employee
     id int,
     name VARCHAR(50)
 );
+
+--- Commanfd to list dowm all the tables
+Show tables;
+
+--- Command to list down all the TABLES
+show CREATE TABLE employee;
