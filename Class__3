@@ -34,6 +34,33 @@ select count(*) as total_row_count from employe1e;
 select * from employe1e;
 
 
+--- update the salary of empl0yee after giving  20% INCREMENT
+
+update employee SET  salary = salary + salary*0.3 ;
+
+SELECT * from employee;
+
+--- How to hire the data using where clause
+
+select * from employee where hiring_date = '2021-08-11';
+
+
+select * from employee;
+
+--- Update the salary of employee who join the company on 2021-08-10 to 80000
+
+Update employee set salary = 80000 where hiring_date= '2021-08-10';
+
+select * from employee;
+
+--- how to delete specific records from table using delete command
+--- delete records of those employess who joined company on 2021-08-10
+
+
+delete from employee where hiring_date = '2021-08-11';
+
+select * from employee;
+
 --- display specific columns in the final result
 select name, salary from employe1e;
 
