@@ -1,0 +1,53 @@
+CREATE DATABASE SQK;
+
+create table if not exists employe1e(
+    id int,
+    name VARCHAR(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city varchar(50)
+);
+
+insert into employe1e values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+
+insert into employe1e values(2,'Rahul', 25, '2021-08-10', 20000, 'Khajuraho');
+
+insert into employe1e values(3,'Sunny', 22, '2021-08-11', 11000, 'Banaglore');
+
+insert into employe1e values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
+
+insert into employe1e values(1,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
+
+
+select * from employe1e;
+
+--- how to count total records
+select count(*) from employe1e;
+
+
+--- alias declaration
+select count(*) as total_row_count from employe1e;
+
+
+--- display all columns in the final result
+select * from employe1e;
+
+
+--- display specific columns in the final result
+select name, salary from employe1e;
+
+
+--- aliases for mutiple columns Duplicate name type - Employee_Name , salary
+select name as employee_name, salary as employee_salary from employe1e;
+
+
+select * from employe1e;
+
+--- print unique hiring_dates from the employee table when employees joined it
+select Distinct(hiring_date) as distinct_hiring_dates from employe1e;
+
+select * from employe1e;
+
+--- How many unique age values in the TABLE
+select count(distinct(age)) as ToTal_Unique_ages from employe1e; 
