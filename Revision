@@ -1,0 +1,167 @@
+create DATABASE Rohan121;
+
+use Rohan121;
+create table if not exists Roha121
+(
+     id int,
+    name VARCHAR(50),
+    address VARCHAR(50),
+    city VARCHAR(50)
+);
+
+insert into Roha121 values(1, 'Shashank', 'RJPM', 'Lucknow');
+
+select * from Roha121;
+
+--- add new COLUMN
+
+alter table Roha121 add DOB DATE;
+
+select * from Roha121;
+
+--- modifyn and chanfge Character VARCHAR(100)
+
+alter table Roha121 MODIFY column name varchar(100);
+
+--- Delete Column 
+
+alter table Roha121 drop COLUMN address;
+
+select * from Roha121;
+
+--- rename the column name to full name
+
+alter table Roha121 RENAME COLUMN name to full_name;
+
+CREATE table if not exists RohanRaj121(
+    id INT,
+    name varchar(50),
+    age int,
+    hiring_date DATE,
+    salary int,
+    city varchar (50)
+);
+
+
+insert into employee values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+
+insert into employee values(2,'Rahul', 25, '2021-08-10', 20000, 'Khajuraho');
+
+insert into employee values(3,'Sunny', 22, '2021-08-11', 11000, 'Banaglore');
+
+insert into employee values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
+
+insert into employee values(1,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
+
+
+--- add UNIQUE integrity constrint on id COLUMN
+
+alter Table RohanRaj121 add constraint id_unique UNIQUE(id);
+
+insert into RohanRaj121  values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+
+
+--- Drop Constrain from existing TABLE
+ALTER table RohanRaj121 DROP constraint id_unique;
+
+insert into RohanRaj121  values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+
+--- Create table with PRIMARY KEY
+
+
+
+CREATE TABLE PERSONS1
+(
+    id INT,
+    name VARCHAR(50),
+    age int,
+    ---PRIMARY KEY(id)
+    constraint pk PRIMARY KEY(id)
+
+);
+
+insert into PERSONS1 values(5,'Shashank',29);
+
+INSERT INTO PERSONS1 VALUES(NULL, 'SHASHANK',29);
+
+alter table PERSONS add constraint age_unq UNIQUE(age); 
+
+SELECT * FROM PERSONS1;
+
+
+INSERT INTO PERSONS VALUES(2, 'RAHUL',28);
+insert into PERSONS values(3,'Amit',28);
+
+insert into PERSONS values(3,'Amit',null);
+
+select * from PERSONS;
+
+insert into PERSONS values(4,'Charan',null);
+
+insert into PERSONS values(5,'Deepak',null);
+
+select * from PERSONS;
+
+--- CREATE TABLE FOR FOREIGN KEY DEMO
+
+
+CREATE TABLE DEMO12
+(
+    CUST_ID INT,
+    NAME VARCHAR(50),
+    AGE INT, 
+    CONSTRAINT PK PRIMARY KEY(CUST_ID)
+);
+
+CREATE TABLE ORDERS121
+(
+    order_id int,
+    order_num int,
+    customer_id int,
+    CONSTRAINT PK PRIMARY KEY(order_id),
+    CONSTRAINT FK21 FOREIGN KEY(customer_id) REFERENCES DEMO12(CUST_ID)
+);
+
+SELECT * FROM PERSONS;
+
+
+create table if not exists employee(
+    id int,
+    name VARCHAR(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city varchar(50)
+);
+
+insert into employee values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+
+insert into employee values(2,'Rahul', 25, '2021-08-10', 20000, 'Khajuraho');
+
+insert into employee values(3,'Sunny', 22, '2021-08-11', 11000, 'Banaglore');
+
+insert into employee values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
+
+insert into employee values(1,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
+
+
+select * from employee;
+
+
+--- print unique hiring_dates from the employee table when employees joined it
+
+SELECT DISTINCT(hiring_date)  as distinct_hiring_Date from employee;
+
+
+select * from employee;
+
+select count(DISTINCT(age)) as total_unique_age from employee;
+
+--- Increment salary of each employee by 20% and display final result with new salary
+
+SELECT id,
+       name,
+       salary as old_salary,
+       (salary + salary*0.2) as new_salary
+from employee;
+
