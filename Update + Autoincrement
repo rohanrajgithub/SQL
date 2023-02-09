@@ -47,3 +47,12 @@ insert into auto_inc_exmp(name) values ('Shashank');
 insert into auto_inc_exmp(name) values ('Shashank');
 
 select * from auto_inc_exmp
+
+
+--- Use of limit key words
+
+select * from employee;
+
+select * from employee limit 2;
+
+
