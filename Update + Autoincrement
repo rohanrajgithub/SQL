@@ -56,3 +56,29 @@ select * from employee;
 select * from employee limit 2;
 
 
+
+# Sorting data in mysql by using 'Order by'
+
+select * from employee;
+
+# arrange data in Ascending order
+select * from employee order by name;
+
+# arrange data in Descending order
+select * from employee order by name desc;
+
+# Display employee data in descending order of salaries if salary are more than 1 employees
+# arrange there data in ascending order of name
+
+#EARLY 
+select * from employee order by salary desc;
+#AFTER
+select * from employee order by salary desc,name asc;
+
+# Wrirte a query to find the employee who is getting maximum salary?
+select * from employee order by salary desc limit 1;
+
+# Wrirte a query to find the employee who is getting minimum salary?
+select * from employee order by salary limit 1;
+
+
