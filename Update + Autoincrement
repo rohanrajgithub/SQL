@@ -156,3 +156,16 @@ select* from employee where name like '_____';
 # Get all those employees whose name will have exact 5 character -- Atleat 5 character in the name column 
 select* from employee where name like '%_____%'; 
 
+
+ # How to use is NULL or is not NULL in the where clause
+ insert into employee values(10,'kapil',null ,'2021-08-10',10000, 'Assam');
+ insert into employee values(11,'Nikhil',30,'2021-08-10',null,'Assam');
+ 
+
+# Get all those employees whose age value is null
+select * from employee where age is null;
+
+
+select * from employee;
+
+
