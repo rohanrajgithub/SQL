@@ -31,3 +31,19 @@ update employee set age=20,salary=25000 where hiring_date = '2021-08-10';
 commit;
 
 select * from employee;
+.
+
+
+--- How to apply Auto Increment 
+
+create table auto_inc_exmp
+(
+	id int auto_increment,
+    name varchar(20),
+    primary key(id)
+);
+
+insert into auto_inc_exmp(name) values ('Shashank');
+insert into auto_inc_exmp(name) values ('Shashank');
+
+select * from auto_inc_exmp
