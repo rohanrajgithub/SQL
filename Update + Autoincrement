@@ -81,4 +81,47 @@ select * from employee order by salary desc limit 1;
 # Wrirte a query to find the employee who is getting minimum salary?
 select * from employee order by salary limit 1;
 
+# Conditional Operators -> <, >, <=, >= 
+# Logical Operators -> AND,OR,NOT
+
+select * from employee;
+
+# list all employee whoare getting salary more than or equal to 20000
+select * from employee where salary >= 20000;
+
+# list all employee whoare getting salary less than or equal to 20000
+select * from employee where salary <= 20000;
+
+# list all employee whoare getting salary less than 20000
+select * from employee where salary < 20000;
+
+# list all employee whoare getting salary more than 20000
+select * from employee where salary > 20000;
+
+# filter the record where age of employee is equal to 20
+select * from employee where age= 20;
+
+# filter the record where age of employee is not equal to 20
+# we can used both <> or !=
+
+select * from employee where age != 20;
+select * from employee where age <> 20;
+
+# Find those employee who joined the company on 11 august and there salary is less than 11500
+select * from employee where hiring_date = '2021-08-11' and salary< 11500;
+
+select * from employee where hiring_date > '2021-08-11' or salary> 20000;
+
+select * from employee where hiring_date > '2021-08-11' and salary> 20000;
+
+
+# How to use between operation in where clause
+# Get all employee data who join the company between hiring date 2021-08-05 to 2021-08-11
+select * from employee where hiring_date between '2021-08-05' and '2021-08-11';
+
+
+# Get all the employees data who are getting salary in the range of 10000 to 28000
+select * from employee where salary between 10000 and 20000;
+
+select * from employee;
 
