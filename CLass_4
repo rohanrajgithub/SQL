@@ -1,0 +1,57 @@
+create database india;
+
+use india;
+
+create table Gujarat
+(
+cust_id int,
+order_id int,
+country VARCHAR(50),
+state VARCHAR(50)
+);
+
+insert into Gujarat values(1,100,'USA','Seattle');
+insert into Gujarat values(2,101,'INDIA','UP');
+insert into Gujarat values(2,103,'INDIA','Bihar');
+insert into Gujarat values(4,108,'USA','WDC');
+insert into Gujarat values(5,109,'UK','London');
+insert into Gujarat values(4,110,'USA','WDC');
+insert into Gujarat values(3,120,'INDIA','AP');
+insert into Gujarat values(2,121,'INDIA','Goa');
+insert into Gujarat values(1,131,'USA','Seattle');
+insert into Gujarat values(6,142,'USA','Seattle');
+insert into Gujarat values(7,150,'USA','Seattle');
+
+select * from Gujarat;
+
+# having Clause
+#write a query to find the country where only 1 order was placed
+select country from Gujarat group by country having count(*) = 1;
+
+# How to used Group CONCAT
+# Query - Write a query to print distinct states present in data set for each country?
+
+select country, group_concat(distinct state order by state desc separator '<->') as states_in_country from Gujarat group by  country;
+
+create table vd1
+(
+	id int,
+    name varchar(50),
+    salary int
+);
+
+insert into vd1 values(1,'Shashank',5000),(2,'Amit',5500),(3,'Rahul',7000),(4,'Rohit',6000),(5,'Nitin',4000),(6,'Sunny',7500);
+
+select * from vd1;
+
+select * from vd1 where salary > (select salary from vd1 where name='Rohit');
+
+# Subqueries in SQL
+create table employees
+(
+    id int,
+    name varchar(50),
+    salary int
+);
+
+insert into employees values(1,'Shashank',5000),(2,'Amit',5500),(3,'Rahul',7000),(4,'Rohit',6000),(5,'Nitin',4000),(6,'Sunny',7500);
