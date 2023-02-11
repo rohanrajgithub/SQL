@@ -1,0 +1,143 @@
+#uber Interview question
+
+insert into tree values(5,8),(9,8),(4,5),(2,9),(1,5),(3,9),(8,null);
+select * from tree;
+
+
+select node,
+		Case 
+			when node not in (select distinct parent from tree where parent is not null) then 'LEAF'
+			when parent is null then 'ROOT'
+            else 'INNER'
+		END as node_type
+	from tree;
+
+# Amazon SQL
+
+create table transactions
+(
+    trx_date date,
+    merchant_id varchar(10),
+    amount int,
+    payment_mode varchar(10)
+);
+
+insert into transactions values('2022-04-02','m1',150,'CASH');
+insert into transactions values('2022-04-02','m1',500,'ONLINE');
+insert into transactions values('2022-04-03','m2',450,'ONLINE');
+insert into transactions values('2022-04-03','m1',100,'CASH');
+insert into transactions values('2022-04-03','m3',600,'CASH');
+insert into transactions values('2022-04-05','m5',200,'ONLINE');
+insert into transactions values('2022-04-05','m2',100,'ONLINE');
+
+select * from transactions;
+
+select merchant_id,
+		sum(case when  payment_mode = 'CASH' then amount else 0 end) as cash_amount,
+        sum(case when  payment_mode = 'ONLINE' then amount else 0 end) as cash_amount
+	from transactions group by merchant_id;
+
+
+
+
+#Example for Join
+
+Create table orders
+(
+	order_id int,
+    cust_id int,
+    order_dat date,
+    shipper_id int
+);
+
+create table customer
+(
+	cust_id int,
+    cust_name varchar(50),
+    country varchar(50)
+);
+
+create table shippers
+(
+	ship_id int,
+    shipper_name varchar(50)
+);
+
+# order table Data
+insert into orders values(10308, 2, '2022-09-15', 3);
+insert into orders values(10309, 30, '2022-09-16', 1);
+insert into orders values(10310, 41, '2022-09-19', 2);
+
+#Customer Table data
+insert into customer values(1, 'Neel', 'India');
+insert into customer values(2, 'Nitin', 'USA');
+insert into customer values(3, 'Mukesh', 'UK');
+
+insert into shippers values(3,'abc');
+insert into shippers values(1,'xyz');
+
+
+select * from orders;
+select * from customer;
+select* from shippers;
+# Perform inner Join
+# get the customer informations for each order order ,if value of customet is present in order TABLE
+
+select 
+o.*,c.*
+from orders o
+inner join customer c on o. cust_id = c.cust_id;
+
+
+
+# Left Join
+select
+o.*,c.*
+from orders o
+left join customer c on o. cust_id = c.cust_id;
+
+# Right Join
+select
+o.*,c.*
+from orders o
+right join customer c on o. cust_id = c.cust_id;
+
+# Cross Join
+-- select 
+-- o.*, c.*
+-- from orders o
+-- full outer join customers c;
+
+# How to join more than two dataset?
+#Perform Inner Join 
+#get the customer informations for each order order, if value of customer is present in orders TABLE
+# also get the information of shipper name
+
+select 
+o.*, c.*, s.*
+from orders o
+inner join customer c on o.cust_id = c.cust_id
+inner join shippers s on o.shipper_id = s.ship_id;
+
+
+create table employee125
+(
+	emp_id int,
+    name varchar(50),
+    mgr_id int
+);
+
+
+
+
+
+insert into employee125 values(1, 'Shashank', 3);
+insert into employee125 values(2, 'Amit', 3);
+insert into employee125 values(3, 'Rajesh', 4);
+insert into employee125 values(4, 'Ankit', 6);
+insert into employee125 values(6, 'Nikhil', null);
+
+select * from employee125;
+
+# Write a query to print the distinct names of managers??
+select distinct name from employee125 ;
