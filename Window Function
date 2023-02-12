@@ -109,7 +109,7 @@ select* from amazon_sales_data;
 
 select*,
 		avg(sales_amount) over (order by sales_amount )  as Average_Sales,
-		sum(sales_amount) over (order by sales_amount )  as Rolling-sum
+		sum(sales_amount) over (order by sales_amount )  as Rolling_sum
 
     from amazon_sales_data;
 
