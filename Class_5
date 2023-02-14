@@ -317,4 +317,34 @@ insert into daily_sales values('2022-03-23',200);
 insert into daily_sales values('2022-03-25',300);
 insert into daily_sales values('2022-03-29',250);
 
+# Calculate the running sum for a week
+# Calculate the running sum for a month
+
+create table daily_sales1
+(
+sales_date date,
+sales_amount int
+);
+
+insert into daily_sales1 values('2022-03-20',900);
+insert into daily_sales1 values('2022-03-23',200);
+insert into daily_sales1 values('2022-03-25',300);
+insert into daily_sales1 values('2022-03-29',250);
+insert into daily_sales1 values('2022-03-11',400);
+insert into daily_sales1 values('2022-03-12',500);
+insert into daily_sales1 values('2022-03-13',300);
+insert into daily_sales1 values('2022-03-14',600);
+insert into daily_sales1 values('2022-03-15',500);
+insert into daily_sales1 values('2022-03-16',200);
+
+select* from daily_sales1;
+
+select *,
+		sum(sales_amount) over (order by sales_date range between interval '6' day preceding and current row )  as running_weekly_sum
+from daily_sales;
+
+select *,
+		sum(sales_amount) over (order by sales_date range between current row and interval '6' day following )  as running_weekly_sum
+from daily_sales;
+
 
