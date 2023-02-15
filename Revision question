@@ -1,0 +1,154 @@
+create database mysql_assignment_db;
+use mysql_assignment_db;
+
+create table CITY
+(
+	ID int,
+    NAME VARCHAR(17),
+    COUNTRYCODE VARCHAR(30),
+    DISTRICT VARCHAR(20),
+    POPULATION INT
+);
+
+alter table CITY modify column DISTRICT VARCHAR(100);
+alter table CITY modify column COUNTRYCODE VARCHAR(30);
+describe CITY;
+
+INSERT INTO CITY values (6,'Rotterdam', 'NLD' , 'Zuid-Holland' , 593321);
+insert into CITY VALUES(3878,'Scottsdale','USA','Arizona',202705);
+insert into CITY VALUES(3965,'Corona','USA','California',124966);
+insert into CITY VALUES(3973,'Concord','USA','California',121780);
+insert into CITY VALUES(3977,'Cedar Rapids','USA','Iowa',120758);
+insert into CITY VALUES(3982,'Coral Springs','USA','Florida',117549);
+insert into CITY VALUES(4054,'Fairfield','USA','California',92256);
+insert into CITY VALUES(4058,'Boulder','USA','Colorado',91238);
+insert into CITY VALUES(4061,'Fall River','USA','Massachusetts',90555);
+
+SELECT * FROM CITY;  
+
+SELECT * FROM CITY WHERE POPULATION > 100000;
+#Q1. Query all columns for all American cities in the CITY table with populations larger than 100000.
+#The CountryCode for America is USA.
+
+
+select * from CITY where COUNTRYCODE = "USA" AND POPULATION > 100000;
+
+
+#UPDATE COLUMN NAME TO FULL_NAME BECAUSE NAME IS A INNER KEYWORD
+ALTER TABLE CITY RENAME COLUMN NAME TO FULL_NAME;
+
+
+
+#Q2. Query the NAME field for all American cities in the CITY table with populations larger than 120000.
+#The CountryCode for America is USA.
+#The CITY table is described as follows:
+
+SELECT  FULL_NAME FROM CITY   WHERE  COUNTRYCODE = "USA" AND POPULATION > 120000;
+
+
+#Q3. Query all columns (attributes) for every row in the CITY table.
+#The CITY table is described as follows:
+
+SELECT * FROM CITY;
+
+#Q4. Query all columns for a city in CITY with the ID 1661.
+#The CITY table is described as follows
+SELECT * FROM CITY WHERE ID = 1661;
+
+
+#Q5. Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is
+#JPN.
+#The CITY table is described as follows:
+
+SELECT * FROM CITY WHERE COUNTRYCODE = 'JPN';
+
+#Q6. Query the names of all the Japanese cities in the CITY table. The COUNTRYCODE for Japan is
+#JPN.
+#The CITY table is described as follows
+SELECT FULL_NAME FROM CITY where COUNTRYCODE = JPN;
+
+
+CREATE table IF NOT exists STATION
+(
+	ID INT,
+    CITY VARCHAR(20),
+    STATE VARCHAR(20),
+    LAT_N int,
+    LONG_W int
+);
+
+DESCRIBE STATION;
+
+INSERT INTO STATION VALUES(794,'Kissee Mills','MO',139,73);
+INSERT INTO STATION VALUES(824,'Loma Mar','CA',48,130);
+INSERT INTO STATION VALUES(603,'Sandy Hook','CT',72,148);
+INSERT INTO STATION VALUES(478,'Tipton','IN',33,97);
+INSERT INTO STATION VALUES(619,'Arlington','CO',75,92);
+INSERT INTO STATION VALUES(711,'Turner','AR',50,101);
+INSERT INTO STATION VALUES(839,'Slidell','LA',85,151);
+INSERT INTO STATION VALUES(411,'Negreet','LA',98,105);
+INSERT INTO STATION VALUES(588,'Glencoe','KY',46,136);
+INSERT INTO STATION VALUES(665,'Chelsea','IA',98,59);
+INSERT INTO STATION VALUES(342,'Chignik Lagoon','AK',103,153);
+INSERT INTO STATION VALUES(733,'Pelahatchie','MS',38,28);
+INSERT INTO STATION VALUES(811,'Dorrance','KS',102,121);
+INSERT INTO STATION VALUES(698,'Albany','CA',49,80);
+INSERT INTO STATION VALUES(325,'Monument','KS',70,141);
+INSERT INTO STATION VALUES(414,'Manchester','MD',73,37);
+INSERT INTO STATION VALUES(113,'Prescott','IA',39,65);
+INSERT INTO STATION VALUES(971,'Graettinger','IA',94,150);
+INSERT INTO STATION VALUES(266,'Cahone','CO',116,127);
+INSERT INTO STATION VALUES(266,'Cahone','CO',116,127);
+
+
+SELECT * FROM STATION;
+
+#Q7. Query a list of CITY and STATE from the STATION table.
+#The STATION table is described as follows:
+ select CITY,STATE FROM STATION;
+ 
+#Q8. Query a list of CITY names from STATION for cities that have an even ID number. Print the results
+#in any order, but exclude duplicates from the answer.
+
+select distinct(city) as CITY_NAME from station where ID%2 = 0 order by City;
+
+#Q9. Find the difference between the total number of CITY entries in the table and the number of
+#distinct CITY entries in the table
+
+select count(CITY) as Total_Number_of_City ,count(distinct(CITY)) as TOTAL_UNIQUE_CITY ,count(CITY) - count(distinct(CITY)) as DIFFERENCE_BETWEEN_TWO_CITY from STATION;
+
+    
+#Q10. Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+select length(CITY) AS LENGTH_OF_CITY, CITY FROM STATION ORDER BY length(CITY)  ASC limit 1 ;
+
+select length(CITY) AS LENGTH_OF_CITY, CITY FROM STATION ORDER BY length(CITY)  DESC limit 1 ;
+
+
+#Q11. Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result
+#cannot contain duplicates.
+
+select distinct(CITY) AS DISTINCT_CITY_NAME FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) IN ('a','e','i','o','u');
+
+SELECT DISTINCT CITY FROM STATION
+WHERE lcase(CITY) LIKE 'a%'
+OR lcase(CITY) LIKE 'e%'
+OR lcase(CITY) LIKE 'i%'
+OR lcase(CITY) LIKE 'o%'
+OR lcase(CITY) LIKE 'u%'
+ORDER BY CITY;
+
+
+#Q12. Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot
+#ontain duplicates.
+
+SELECT DISTINCT CITY FROM STATION
+WHERE lcase(CITY) LIKE '%a%'
+OR lcase(CITY) LIKE '%e%'
+OR lcase(CITY) LIKE '%i%'
+OR lcase(CITY) LIKE '%o%'
+OR lcase(CITY) LIKE '%u%'
+ORDER BY CITY;
+
+select distinct CITY from STATION where CITY not regexp '^[aeiou]' or city not regexp '[aeiou]$';
+
